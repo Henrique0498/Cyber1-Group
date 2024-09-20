@@ -1,0 +1,101 @@
+<main class="container">
+  <section>
+    <form (ngSubmit)="submitForm()" [formGroup]="userForm" class="form">
+      <div class="form__inputs">
+        <app-input
+          [id]="'id'"
+          [formControlName]="'id'"
+          label="Id"
+          name="id"
+          [type]="'number'"
+        />
+
+        <app-input
+          [id]="'name'"
+          [formControlName]="'name'"
+          label="Nome"
+          name="name"
+        />
+
+        <app-input
+          [id]="'age'"
+          [formControlName]="'age'"
+          label="Idade"
+          name="age"
+          [type]="'number'"
+        />
+      </div>
+
+      <div class="form__actions">
+        <app-button type="submit" color="success" [disabled]="!userForm.valid"
+          >Salvar</app-button
+        >
+
+        <app-button
+          (click)="cleanForm()"
+          color="danger"
+          [disabled]="!userForm.valid"
+          >Limpar</app-button
+        >
+      </div>
+    </form>
+  </section>
+
+  <section class="container__table">
+    <table class="table">
+      <thead class="table__header">
+        <tr>
+          <th>Id</th>
+          <th>Nome</th>
+          <th>Idade</th>
+          <th class="table__header--actions">Ações</th>
+        </tr>
+      </thead>
+      <tbody class="table__body">
+        @for (user of users$; track user.id){
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.age }}</td>
+          <td class="table__body--actions">
+            <app-button (click)="editUser(user)" size="small">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M15.275 12.475L11.525 8.7L14.3 5.95l-.725-.725L8.1 10.7L6.7 9.3l6.875-6.875L15.7 4.55l1.975-1.975l3.75 3.75zM6.75 21H3v-3.75l7.1-7.125l3.775 3.75z"
+                />
+              </svg>
+            </app-button>
+            <app-button
+              (click)="deleteUser(user.id!)"
+              size="small"
+              color="danger"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M2.75 6.167c0-.46.345-.834.771-.834h2.665c.529-.015.996-.378 1.176-.916l.03-.095l.115-.372c.07-.228.131-.427.217-.605c.338-.702.964-1.189 1.687-1.314c.184-.031.377-.031.6-.031h3.478c.223 0 .417 0 .6.031c.723.125 1.35.612 1.687 1.314c.086.178.147.377.217.605l.115.372l.03.095c.18.538.74.902 1.27.916h2.57c.427 0 .772.373.772.834S20.405 7 19.979 7H3.52c-.426 0-.771-.373-.771-.833M11.607 22h.787c2.707 0 4.06 0 4.941-.863c.88-.864.97-2.28 1.15-5.111l.26-4.081c.098-1.537.147-2.305-.295-2.792s-1.187-.487-2.679-.487H8.23c-1.491 0-2.237 0-2.679.487s-.392 1.255-.295 2.792l.26 4.08c.18 2.833.27 4.248 1.15 5.112S8.9 22 11.607 22"
+                />
+              </svg>
+            </app-button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+
+  <app-alert [disabled]="alertDisabled" [type]="alertType">{{
+    alertMessage
+  }}</app-alert>
+</main>

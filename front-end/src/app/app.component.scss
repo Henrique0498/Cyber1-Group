@@ -1,0 +1,10 @@
+.app {
+  min-height: calc(100vh + 5rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.app__body {
+  flex: 1;
+  padding-top: 5rem;
+}

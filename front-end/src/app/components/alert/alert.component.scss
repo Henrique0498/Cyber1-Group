@@ -1,0 +1,23 @@
+.alert {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  transform: translateX(0);
+
+  &.disabled {
+    transform: translateX(20px);
+    display: none;
+  }
+
+  &.success {
+    background-color: #34d399;
+    color: #022c22;
+  }
+
+  &.error {
+    background-color: #f87171;
+    color: #450a0a;
+  }
+}

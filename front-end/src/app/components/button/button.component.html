@@ -1,0 +1,7 @@
+<button
+  [type]="type"
+  class="button {{ size }} {{ color }} {{ disabled ? 'disabled' : '' }}"
+  [disabled]="disabled"
+>
+  <ng-content />
+</button>
